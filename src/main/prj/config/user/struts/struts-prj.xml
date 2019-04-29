@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+<struts>
+	<package name="login" namespace="/logs" extends="qyx-default">
+	
+	
+	
+		<action name="log_*" class="main.prj.java.com.web.demo.action.LoginAction" method="{1}">
+			<result name="indexPage">/WEB-INF/page/index.jsp</result>
+			<result name="logPage">/WEB-INF/page/login.jsp</result>
+<!-- 			<result name="success" type="json">  -->
+<!--  				<param name="ignoreHierarchy">false</param> -->
+<!-- 			</result> -->
+<!-- 			退出 -->
+			<result name="toLoginOut">/WEB-INF/page/logoutConfirm.jsp</result>
+<!-- 			错误页面回显 -->
+			<result name="input">/WEB-INF/page/login.jsp</result>
+<!-- 			重复提交跳转页面 
+			<result name="invalid.token">/WEB-INF/page/login.jsp</result>-->
+			
+<!-- 			增加token拦截器 
+			<interceptor-ref name="token"/>-->
+
+		</action>
+	</package>
+</struts>

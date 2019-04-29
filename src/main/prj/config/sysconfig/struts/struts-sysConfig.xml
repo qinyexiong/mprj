@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="sysconfig" namespace="/sysconfigs" extends="qyx-default">
+		<action name="sysconfig_*" class="main.prj.java.com.web.demo.action.SysConfigAction" method="{1}">
+			<result name="query">
+			<param name="location">/WEB-INF/page/sysconfig/query.jsp</param>
+			</result>
+			<result name="edit">
+			<param name="location">/WEB-INF/page/sysconfig/edit.jsp</param>
+			</result>
+	</action>
+	</package>
+</struts>

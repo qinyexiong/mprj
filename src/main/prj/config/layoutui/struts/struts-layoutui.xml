@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="layoutui" namespace="/layoutuis" extends="qyx-default">
+		<action name="layoutui_*" class="main.prj.java.com.web.layoutui.action.LayOutUi" method="{1}">
+<!-- 			<result name="{1}"> -->
+<!-- 			<param name="location">/WEB-INF/page/layoutui/query.jsp</param> -->
+<!-- 			</result> -->
+			
+	</action>
+	</package>
+</struts>

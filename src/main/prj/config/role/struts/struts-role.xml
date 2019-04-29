@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="role" namespace="/roles" extends="qyx-default">
+		<action name="role_*" class="main.prj.java.com.web.demo.action.RoleAction" method="{1}">
+			<result name="query">
+			<param name="location">/WEB-INF/page/role/query.jsp</param>
+			</result>
+			<result name="edit">
+			<param name="location">/WEB-INF/page/role/edit.jsp</param>
+			</result>
+	</action>
+	</package>
+</struts>

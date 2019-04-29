@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="user" namespace="/users" extends="qyx-default">
+		<action name="user_*" class="main.prj.java.com.web.demo.action.UserAction" method="{1}">
+			<result name="query">
+			<param name="location">/WEB-INF/page/user/query.jsp</param>
+			</result>
+			<result name="edit">
+			<param name="location">/WEB-INF/page/user/edit.jsp</param>
+			</result>
+			
+			<result name="userExport">
+			<param name="location">/WEB-INF/page/user/userExport.jsp</param>
+			</result>
+			
+<!-- 			导出用户excel -->
+ 		<result name="excelExport" type="stream">
+         <param name="contentType">application/vnd.ms-excel,charset=ISO8859-1</param>    <!-- 注意这里的ContentType -->
+         <param name="inputName">excelStream</param>                   <!-- 这里需要和Action里的变量名一致 -->
+         <param name="contentDisposition">attachment;filename="${outFileName}"</param> <!-- 下载文件的名字 -->
+         <param name="bufferSize">10240</param>  <!-- 下载文件的大小 10485760=10M -->
+    	 </result>
+<!--     	 跳转至导入信息页面 -->
+       <result name="toupload">
+			<param name="location">/WEB-INF/page/user/userImport.jsp</param>
+			</result>
+	</action>
+	
+	</package>
+</struts>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.prj.java.com.dao.demo.TbUser">
+				   
+
+	<!-- 用户信息表 -->
+	<sql id="tb_user"> tb_user </sql>
+
+	<resultMap id="BaseResultMap" type="main.prj.java.com.dao.demo.TbUser">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="user_no" property="userNo" jdbcType="VARCHAR" />
+		<result column="user_type" property="userType" jdbcType="VARCHAR" />
+		<result column="main_user_id" property="mainUserId" jdbcType="BIGINT" />
+		<result column="user_pwd" property="userPwd" jdbcType="VARCHAR" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="mobile_no" property="mobileNo" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="last_login_time" property="lastLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="is_changed_pwd" property="isChangedPwd"
+			jdbcType="INTEGER" />
+		<result column="pwd_error_count" property="pwdErrorCount"
+			jdbcType="INTEGER" />
+		<result column="pwd_error_time" property="pwdErrorTime"
+			jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARBINARY" />
+	</resultMap>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		<include refid="tb_user"/>
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="main.prj.java.com.dao.demo.TbUser">
+<!-- 		<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE"> -->
+<!-- 					select UUID_SHORT() -->
+<!-- 				</selectKey> -->
+		insert into <include refid="tb_user"/> (id, version, create_time,
+		user_no, user_type,
+		main_user_id,
+		user_pwd, user_name, mobile_no,
+		status, last_login_time,
+		is_changed_pwd,
+		pwd_error_count, pwd_error_time, remark,
+		email)
+		values
+		(#{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{userNo,jdbcType=VARCHAR}, #{userType,jdbcType=VARCHAR},
+		#{mainUserId,jdbcType=BIGINT},
+		#{userPwd,jdbcType=VARCHAR},
+		#{userName,jdbcType=VARCHAR},
+		#{mobileNo,jdbcType=VARCHAR},
+		#{status,jdbcType=INTEGER}, #{lastLoginTime,jdbcType=TIMESTAMP},
+		#{isChangedPwd,jdbcType=INTEGER},
+		#{pwdErrorCount,jdbcType=INTEGER},
+		#{pwdErrorTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR},
+		#{email,jdbcType=VARBINARY})
+	</insert>
+	<update id="updateByPrimaryKey" parameterType="main.prj.java.com.dao.demo.TbUser">
+		update 	<include refid="tb_user"/>
+		set
+		version = #{version,jdbcType=INTEGER},
+		create_time =
+		#{createTime,jdbcType=TIMESTAMP},
+		user_no = #{userNo,jdbcType=VARCHAR},
+		user_type = #{userType,jdbcType=VARCHAR},
+		main_user_id =
+		#{mainUserId,jdbcType=BIGINT},
+		user_pwd = #{userPwd,jdbcType=VARCHAR},
+		user_name = #{userName,jdbcType=VARCHAR},
+		mobile_no =
+		#{mobileNo,jdbcType=VARCHAR},
+		status = #{status,jdbcType=INTEGER},
+		last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+		is_changed_pwd =
+		#{isChangedPwd,jdbcType=INTEGER},
+		pwd_error_count =
+		#{pwdErrorCount,jdbcType=INTEGER},
+		pwd_error_time =
+		#{pwdErrorTime,jdbcType=TIMESTAMP},
+		remark =
+		#{remark,jdbcType=VARCHAR},
+		email = #{email,jdbcType=VARBINARY}
+		where id
+		= #{id,jdbcType=VARCHAR}
+	</update>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select id, version, create_time, user_no, user_type,
+		main_user_id, user_pwd,
+		user_name,
+		mobile_no, status, last_login_time,
+		is_changed_pwd, pwd_error_count,
+		pwd_error_time,
+		remark, email
+		from
+			<include refid="tb_user"/>
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.HashMap">
+		select id, version, create_time, user_no, user_type, main_user_id,
+		user_pwd, user_name,
+		mobile_no, status, last_login_time,
+		is_changed_pwd, pwd_error_count,
+		pwd_error_time,
+		remark, email
+		from
+			<include refid="tb_user"/>
+		<where>
+			<if test="id !=null and  id !=''">And id = #{id}</if>
+			<if test="userNo !=null and userNo !=''">And user_no = #{userNo}</if>
+		</where>
+	</select>
+</mapper>

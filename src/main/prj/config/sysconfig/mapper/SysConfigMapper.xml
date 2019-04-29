@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="main.prj.java.com.dao.demo.SysConfig" >
+
+<!-- 系统资源config -->
+	<sql id="tb_name"> sys_config </sql>
+	<sql id="sql_select">id, sys_switch_name, sys_code, 
+      sys_switch, description, create_time, 
+      creator, update_time, mender, 
+      version</sql>
+  <resultMap id="BaseResultMap" type="main.prj.java.com.dao.demo.SysConfig" >
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="sys_switch_name" property="sysSwitchName" jdbcType="VARCHAR" />
+    <result column="sys_code" property="sysCode" jdbcType="VARCHAR" />
+    <result column="sys_switch" property="sysSwitch" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="creator" property="creator" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="mender" property="mender" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="main.prj.java.com.dao.demo.SysConfig" >
+    insert into <include refid="tb_name"/> (id,sys_switch_name ,sys_code ,sys_switch, description,create_time, creator,
+		update_time, mender,
+		version
+      )
+    values (
+	    #{id,jdbcType=VARCHAR}, 
+	    #{sysSwitchName,jdbcType=VARCHAR}, 
+	    #{sysCode,jdbcType=VARCHAR}, 
+	    #{sysSwitch,jdbcType=VARCHAR}, 
+	    #{description,jdbcType=VARCHAR},
+<!-- 	    insert模板字段  -->
+	    #{createTime,jdbcType=TIMESTAMP},
+		#{creator,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=TIMESTAMP},
+		#{mender,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR}
+      )
+  </insert>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		<include refid="tb_name" />
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	
+	
+	<update id="updateByPrimaryKey" parameterType="main.prj.java.com.dao.demo.SysConfig">
+		update
+		<include refid="tb_name" />
+		set
+		sys_switch_name	= #{sysSwitchName,jdbcType=VARCHAR},
+		sys_code = #{sysCode,jdbcType=VARCHAR},
+		sys_switch = #{sysSwitch,jdbcType=VARCHAR},
+		description = #{description,jdbcType=VARCHAR},
+<!-- 	update模板字段 -->
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		creator = #{creator,jdbcType=VARCHAR},
+		update_time = #{updateTime,jdbcType=TIMESTAMP},
+		mender = #{mender,jdbcType=VARCHAR},
+		version= #{version,jdbcType=VARCHAR}
+		where 
+		id= #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="sql_select" />
+		from
+		<include refid="tb_name" />
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select <include refid="sql_select"/>
+    from <include refid="tb_name"/>
+    
+  </select>
+  
+  <select id="sysSwitch" resultMap="BaseResultMap" >
+    select sys_switch 
+    from <include refid="tb_name"/>
+    WHERE
+    sys_code = #{sysCode}
+  </select>
+  
+  
+  
+  
+  
+  
+</mapper>
